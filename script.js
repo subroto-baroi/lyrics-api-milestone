@@ -29,6 +29,7 @@ function showData(data){
         </ul>
     `;
     
+    
     if(data.prev || data.next){
         more.innerHTML=`
         ${data.prev ? `<button class ="btn" onclick="getMoreSongs('${data.prev}')">Prev</button>`: ''}
@@ -38,12 +39,7 @@ function showData(data){
     }else {
         more.innerHTML='';
     }
-}
-
-
-    
-
-
+}  
 
 
 // get prev and next songs
@@ -54,7 +50,7 @@ function showData(data){
         showData(data);
     }
 
-
+// get lyrics for songs
     async function getLyrics(artist, songTitle){
         const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
         const data = await res.json();
@@ -81,7 +77,8 @@ form.addEventListener('submit', e => {
     
 
 });
- 
+
+ // get lyrics result
 result.addEventListener('click', e => {
     const clickedEl = e.target;
     if(clickedEl.tagName === 'BUTTON'){
